@@ -1,0 +1,34 @@
+image: node:14
+
+
+stages:
+  - analysis
+  - depoly
+
+before_script:
+  - npm install
+
+# 执行代码分析
+work:
+  stage: analysis
+  only:
+    - master
+  script:
+    - npm run analysis
+  artifacts:
+    paths:
+      - report
+
+# 部署gitlab pages
+pages:
+  stage: depoly
+  only:
+    - master
+  script:
+    - mkdir -p public
+    - mv report/* public
+  dependencies:
+    - work
+  artifacts:
+    paths:
+      - public
