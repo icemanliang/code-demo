@@ -4,24 +4,9 @@
     "scripts": {
       "analysis": "ca analysis"
     },
-    "dependencies": {
-      
-    },
     "devDependencies": {
-      "code-analysis-ts": "^1.1.2",
-      "husky": "^4.2.5",
-      "lint-staged": "^10.2.11"
+      "code-analysis-ts": "^1.1.2"
     },
-    "husky": {
-      "hooks": {
-        "pre-commit": "lint-staged"
-      }
-    },
-    "lint-staged": {
-      "*": [
-        "ca analysis",
-        "git add"
-      ]
-    }
+    "license": "ISC"
   }
   
