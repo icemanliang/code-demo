@@ -5,8 +5,8 @@
       "analysis": "ca analysis"
     },
     "devDependencies": {
-      "code-analysis-ts": "^1.1.2"
+      "code-analysis-ts": "^1.1.3"
     },
-    "license": "ISC"
+    "license": "MIT"
   }
   
