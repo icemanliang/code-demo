@@ -1,5 +1,5 @@
 # code-demo
-用于测试&演示code-analysis-ts代码分析工具的demo项目,使用github pages来部署报告
+用于测试&演示code-analysis-ts代码分析工具的demo项目,使用github pages来部署代码分析报告
 
 目录介绍：
 1. analysis.config.js为配置文件
