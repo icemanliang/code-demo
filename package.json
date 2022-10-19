@@ -1,11 +1,11 @@
 {
-    "name": "code-analysis-project-demo",
+    "name": "code-scan-project-demo",
     "version": "0.1.0",
     "scripts": {
-      "analysis": "ca analysis"
+      "scan": "ca analysis"
     },
     "devDependencies": {
-      "code-analysis-ts": "^1.1.3"
+      "code-analysis-ts": "^1.1.4"
     },
     "license": "MIT"
   }
