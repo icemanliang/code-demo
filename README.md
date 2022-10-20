@@ -8,7 +8,7 @@
 
 执行分析操作:
 1. npm install or yarn
-2. npm run scan or yarn scan
+2. npm run analysis or yarn analysis
 
 执行说明：
 配置文件中代码告警阀值分数默认为90分，低于90分不合格会触发进程异常结束，配合git hook 或者 CI管线可以阻止代码提交/合入
