@@ -6,9 +6,16 @@
 2. src目录下的文件未待分析文件，包括有ts, tsx, vue三种类型文件
 3. docs目录下为分析后产生的代码分析报告及数据
 
-执行分析操作:
-1. npm install or yarn
-2. npm run analysis or yarn analysis
+本地执行:
+```javascript
+$ npm install 
+// or 
+$ yarn install
+
+$ npm run analysis 
+//or 
+$ yarn analysis
+```
 
 执行说明：
 配置文件中代码告警阀值分数默认为90分，低于90分不合格会触发进程异常结束，配合git hook 或者 CI管线可以阻止代码提交/合入
