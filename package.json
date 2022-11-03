@@ -5,8 +5,12 @@
       "analysis": "ca analysis"
     },
     "devDependencies": {
-      "code-analysis-ts": "^1.1.6"
+      "code-analysis-ts": "^1.2.0"
     },
-    "license": "MIT"
+    "license": "MIT",
+    "engines": {
+      "node": ">= 14.0.0",
+      "npm": ">= 4.0.0"
+    }
   }
   
