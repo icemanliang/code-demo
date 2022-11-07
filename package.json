@@ -1,11 +1,12 @@
 {
-    "name": "code-analysis-project-demo",
+    "name": "code-analysis-code-demo",
     "version": "0.1.0",
     "scripts": {
-      "analysis": "ca analysis"
+      "analysis": "ca analysis",
+      "analysis:api": "node ./apiMode.js"
     },
     "devDependencies": {
-      "code-analysis-ts": "^1.2.0"
+      "code-analysis-ts": "^1.2.1"
     },
     "license": "MIT",
     "engines": {

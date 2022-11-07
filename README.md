@@ -19,7 +19,9 @@ $ yarn analysis
 
 执行说明：
 配置文件中代码告警阀值分数默认为90分，低于90分不合格会触发进程异常结束，配合git hook 或者 CI管线可以阻止代码提交/合入
-修改降低该配置分数，执行即可体验合格输出
+修改降低该配置分数，执行即可体验合格输出。
+
+scorePlugin.js为评分插件demo，analysis.config.js可以将scorePlugin配置项修改为该插件，即可体验自定义评分。
 
 代码分析报告地址：
 https://liangxin199045.github.io/code-demo/
