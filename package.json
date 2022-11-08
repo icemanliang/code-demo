@@ -6,7 +6,7 @@
       "analysis:api": "node ./apiMode.js"
     },
     "devDependencies": {
-      "code-analysis-ts": "^1.2.3"
+      "code-analysis-ts": "^1.2.4"
     },
     "license": "MIT",
     "engines": {

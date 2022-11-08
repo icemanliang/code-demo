@@ -19,10 +19,10 @@ module.exports = {
     analysisTarget: 'framework',                                            // 必须，要分析的目标依赖名
     blackApis: ['app.localStorage.set'],                                    // 可选，需要标记的黑名单api，默认为空数组
     browserApis: ['window','document','history','location'],                // 可选，要分析的BrowserApi，默认为空数组
-    reportDir: 'docs',                                                      // 可选，生成代码分析报告的目录，默认为report
+    reportDir: 'docs',                                                      // 可选，生成代码分析报告的目录，默认为'report',不支持多级目录配置
     reportTitle: 'Code-Demo代码分析报告',                                     // 可选，代码分析报告标题，默认为'代码分析报告'
     isScanVue: true,                                                        // 可选，是否要扫描分析vue中的ts代码，默认为false
-    scorePlugin: 'default',                                                 // 可选，评分插件: Function|'default'|null, default表示运行默认插件，null表示不评分
+    scorePlugin: 'default',                                                 // 可选，评分插件: Function|'default'|null, default表示运行默认插件，默认为null表示不评分
     // scorePlugin: myScoreDeal,
     thresholdScore: 90                                                      // 可选，开启代码告警及阈值分数(0-100)，默认为null即关闭告警逻辑 (CLI模式生效)
 }
