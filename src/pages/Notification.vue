@@ -56,6 +56,7 @@
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import { SeCar } from 'common-components';
 import { notiService, NotificationSettingResponse } from 'quick-modules';
+import { AppRequest as request } from 'framework';
 
 @Component({
   components: {
@@ -88,7 +89,7 @@ export default class NotificationSetting extends Vue {
   private async created() {
     try {
       const { data } = await notiService.getNotificationSetting();
-      if (data) {
+      if (data && request.isRight) {
         this.notificationState = data;
         Object.keys(this.notificationState).forEach((key: string) => {
           const subModuleObj = { ...(this.notificationState as any)[key].subModuleObj };

@@ -26,6 +26,7 @@
 import { Component, Vue, Watch } from 'vue-property-decorator';
 import { namespace } from 'vuex-class';
 import { carStatus, BaResponse } from 'quick-modules';
+import APP, { userInfo } from 'framework';
 
 const ADD_CARD ='m2'; 
 const PUT_OR_CARS ='m3';
@@ -75,6 +76,10 @@ export default class Ba extends Vue {
       disabled = true;
     }
     return disabled;
+  }
+
+  get getUserName(): string {
+    return userInfo.name;
   }
 
   private showEdit(index: number) {

@@ -13,8 +13,8 @@
         cursor: default;
       }
       .title{
-        font-size: 30px;
-        width: 600px;
+        font-size: 26px;
+        width: 700px;
         display: flex;
       }
       .description {
@@ -49,14 +49,10 @@
       .main{
         margin-bottom: 30px;
       }
-      #api {
-        width: 100%;
-      }
       .name {
-        margin-right: 20px;
         color: green;
         width: 250px;
-        
+        text-align: center;
       }
       .main_area{
         display: flex; 
@@ -73,11 +69,13 @@
       .owner {
         color: #000000;
         display: flex;
-        width: 280px;
-        min-width: 280px;
+        width: 400px;
+        min-width: 400px;
         padding: 4px;
         margin-right: 10px;
         height: 26px;
+        white-space: nowrap;
+        overflow-x: scroll;
       }
       .owner:hover {
         cursor: default;
@@ -181,7 +179,7 @@
       .api_detail_closeBtn:hover {
         cursor: pointer;
       }
-      #api_detail_main {
+      #parse_error_detail {
         clear: both;
         background-color: rgb(206, 197, 197);
         width: 100%;
@@ -197,12 +195,12 @@
         white-space: nowrap;
       }
       .card:hover {
-        cursor: pointer;
+        cursor: default;
       }
       .noParse {
         margin-top: 10px;
       }
-      #api, #browserApiMap, #typeArea, #noUseMap, #noParse {
+      #methodMap, #apiMap, #browserMap, #typeMap, #parseErrorInfos {
         padding-top: 10px;
       }
       .noContent{
@@ -233,7 +231,7 @@
       .left_score_title{
         text-align: center;
         color:rgb(13, 52, 226);
-        min-width: 270px;
+        min-width: 250px;
       }
       .left_score_title:hover{
         cursor: default;
@@ -253,7 +251,7 @@
       .left_message{
         text-align: center;
         color:rgb(13, 52, 226);
-        min-width: 270px;
+        min-width: 250px;
       }
       .left_message:hover{
         cursor: default;
@@ -272,15 +270,25 @@
         cursor: default;
       }
       #reportTitle {
-        max-width: 400px;
+        max-width: 500px;
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
       }
       #reportTime {
+        margin-left:5px;
         font-size:16px;
         color:gray;
-        padding-top:15px;
+        padding-top:12px;
+      }
+      .asStyle {
+        color: #3e3cea;
+        margin-left: 5px;
+        margin-top: -1px;
+        font-weight: bold;
+      }
+      .httpReopBtn:hover{
+        cursor: pointer;
       }
     </style>
   </head>
@@ -288,56 +296,57 @@
     <div class="header">
       <div class="title"><div id="reportTitle"></div><div id="reportTime"></div></div>
       <div class="description">
-        <span style="color:blue;"">tips：</span> 红色字体表示黑名单API，( ) 中数字表示API调用次数，[ ] 中数字表示API所在文件代码行（配置httpRepo可跳转）
+        <span style="color:green;">tips：</span>红色字体表示黑名单API，<span style="color:green;margin-right:2px;">( )</span>中数字表示API调用次数，<span style="color:green;margin-right:2px;">-> </span>表示存在AS映射，<span style="color:green;margin-right:2px;">[ ]</span>中数字表示API所在文件代码行（配置httpRepo可跳转）
       </div>
     </div>
     <div class="main">
+      <!--methodMap -->
       <div class="main_area">
         <div class="api_area">
-          <div class="name">Import APIS调用频次及文件分布:</div>
+          <div class="name">Method APIS：</div>
         </div>
         <div class="line"></div>
-        <div id="api">
+        <div id="methodMap">
           <!-- -->
         </div>
       </div>
-      <!--browserApiArea -->
+      <!--typeArea -->
       <div class="main_area">
         <div class="api_area">
-          <div class="name">Browser API调用频次及文件分布:</div>
+          <div class="name">Type APIS：</div>
         </div>
         <div class="line"></div>
-        <div id="browserApiMap">
-      </div>
-        <!-- -->
-      </div>
-      <!--importTypeArea -->
-      <div class="main_area">
-        <div class="api_area">
-          <div class="name">Import Type调用频次及文件分布:</div>
-        </div>
-        <div class="line"></div>
-        <div id="typeArea">
+        <div id="typeMap">
           <!-- -->
         </div>
       </div>
-      <!--noUseArea -->
+      <!--apiMap -->
       <div class="main_area">
         <div class="api_area">
-          <div class="name">Import APIS引入未使用文件分布:</div>
+          <div class="name">未分类 APIS：</div>
         </div>
         <div class="line"></div>
-        <div id="noUseMap">
+        <div id="apiMap">
+          <!-- -->
+        </div>
+      </div>
+      <!--browserMap -->
+      <div class="main_area">
+        <div class="api_area">
+          <div class="name">Browser APIS：</div>
+        </div>
+        <div class="line"></div>
+        <div id="browserMap">
           <!-- -->
         </div>
       </div>
       <!--noParseArea -->
       <div class="main_area main_area_bottom">
         <div class="api_area">
-          <div class="name">AST 解析异常的文件及错误详情:</div>
+          <div class="name" style="color:rgb(13, 52, 226);">解析异常：</div>
         </div>
         <div class="line"></div>
-        <div id="noParse">
+        <div id="parseErrorInfos">
           <!-- -->
         </div>
       </div>
@@ -358,12 +367,11 @@
           <div class="api_detail_title"></div>
           <div class="api_detail_closeBtn" onclick="api_hide()">关闭</div>
         </div>
-        <div id="api_detail_main"></div>
+        <div id="parse_error_detail"></div>
       </div>
     </div>
 
     <script src="./index.js"></script>
-    <script src="./jquery.min.js"></script>
     <script>
       // 隐藏蒙层
       function api_hide() {
@@ -371,11 +379,11 @@
         document.getElementsByClassName('api_detail_title').innerText = '';
       }
       // 展示蒙层
-      function parse_show(event) {
+      function api_show(event) {
         const module = event.target.getAttribute('data-f');
-        const stackMessage = report.parseErrorFiles[module].stack;
+        const stackMessage = report.parseErrorInfos[module].stack;
         noParseDetails(stackMessage);
-        document.getElementsByClassName('api_detail_title')[0].innerText = report.parseErrorFiles[module].file;
+        document.getElementsByClassName('api_detail_title')[0].innerText = report.parseErrorInfos[module].file;
         document.getElementById('api_detail_grey').style.display = 'block';
       }
       // 点击解析失败详情处理
@@ -384,171 +392,16 @@
         html = html + '<div class="area_detail" style="text-align:left;">';
         html = html + stackMessage;
         html = html + '</div>';
-        document.getElementById('api_detail_main').innerHTML = html;
+        document.getElementById('parse_error_detail').innerHTML = html;
       }
-      
-      //  处理apiMap
-      function doApi() {
+      //  处理parseErrorInfos
+      function doParseError() {
         var html = '';
-        var data = report.apiMap;
-        Object.keys(data).forEach(element => {
-          html = html + '<div class="first">';
-          if(data[element].noDeep){
-            html = html + '<div class="second"><div class="owner"';
-            if(data[element].isBlack){
-              html = html + ' style="color:red"';
-            }
-            html = html + ' >';
-            html = html + element;
-            html = html + ' ( ';
-            html = html + data[element].callNum;
-            html = html + ' ) ';
-            html = html + '</div><div class="area">';
-            Object.keys(data[element].callOrigin).forEach(pelement => {
-              html = html + '<div class="card">';
-              html = html + '<span style="color:#e9eb0c;">';
-              html = html + data[element].callOrigin[pelement].projectName;
-              html = html + ' : ';
-              html = html + '</span>';
-              html = html + pelement;
-              html = html + ' : [ ';
-                const lineTemp = data[element].callOrigin[pelement].lines;
-                const httpRepo = data[element].callOrigin[pelement].httpRepo || '';
-                for(let i=0; i<lineTemp.length; i++){
-                  if(httpRepo){
-                    html = html + '<a href="';
-                    html = html + httpRepo;
-                    html = html + pelement;
-                    html = html + '#L';
-                    html = html + lineTemp[i];
-                    html = html + '" target="_blank">';
-                    html = html + lineTemp[i];
-                    html = html + '</a>';
-                  }else{
-                    html = html + lineTemp[i];
-                  }
-                  if(i<lineTemp.length-1){
-                    html = html + ' , ';
-                  }
-                }
-              html = html + ' ] ';
-              html = html + '</div>';
-            });
-            html = html + '</div></div>';
-          }else{
-            Object.keys(data[element]).forEach(selement => {
-              if (data[element][selement].children) {
-                Object.keys(data[element][selement].children).forEach(telement => {
-                  html = html + '<div class="second"><div class="owner"';
-                  if(data[element][selement].children[telement].isBlack){
-                    html = html + ' style="color:red"';
-                  }
-                  html = html + ' >';
-                  html = html + element;
-                  html = html + '.';
-                  html = html + selement;
-                  html = html + '.';
-                  html = html + telement;
-                  html = html + ' ( ';
-                  html = html + data[element][selement].children[telement].callNum;
-                  html = html + ' ) ';
-                  html = html + '</div><div class="area">';
-                  Object.keys(data[element][selement].children[telement].callOrigin).forEach(pelement => {
-                    html = html + '<div class="card">';
-                    html = html + '<span style="color:#e9eb0c;">';
-                    html = html + data[element][selement].children[telement].callOrigin[pelement].projectName;
-                    html = html + ' : ';
-                    html = html + '</span>';
-                    html = html + pelement;
-                    html = html + ' : [ ';
-                    const lineTemp = data[element][selement].children[telement].callOrigin[pelement].lines;
-                    const httpRepo = data[element][selement].children[telement].callOrigin[pelement].httpRepo || '';
-                    for(let i=0; i<lineTemp.length; i++){
-                      if(httpRepo){
-                        html = html + '<a href="';
-                        html = html + httpRepo;
-                        html = html + pelement;
-                        html = html + '#L';
-                        html = html + lineTemp[i];
-                        html = html + '" target="_blank">';
-                        html = html + lineTemp[i];
-                        html = html + '</a>';
-                      }else{
-                        html = html + lineTemp[i];
-                      }
-                      if(i<lineTemp.length-1){
-                        html = html + ' , ';
-                      }
-                    }
-                    html = html + ' ] ';
-                    html = html + '</div>';
-                  });
-                  html = html + '</div></div>';
-                });
-              }else{
-                html = html + '<div class="second"><div class="owner"';
-                if(data[element][selement].isBlack){
-                  html = html + ' style="color:red"';
-                }
-                html = html + ' >';
-                html = html + element;
-                html = html + '.';
-                html = html + selement;
-                html = html + ' ( ';
-                html = html + data[element][selement].callNum;
-                html = html + ' ) ';
-                html = html + '</div><div class="area">';
-                Object.keys(data[element][selement].callOrigin).forEach(pelement => {
-                  html = html + '<div class="card">';
-                  html = html + '<span style="color:#e9eb0c;">';
-                  html = html + data[element][selement].callOrigin[pelement].projectName;
-                  html = html + ' : ';
-                  html = html + '</span>';
-                  html = html + pelement;
-                  html = html + ' : [ ';
-                    const lineTemp = data[element][selement].callOrigin[pelement].lines;
-                    const httpRepo = data[element][selement].callOrigin[pelement].httpRepo || '';
-                    for(let i=0; i<lineTemp.length; i++){
-                      if(httpRepo){
-                        html = html + '<a href="';
-                        html = html + httpRepo;
-                        html = html + pelement;
-                        html = html + '#L';
-                        html = html + lineTemp[i];
-                        html = html + '" target="_blank">';
-                        html = html + lineTemp[i];
-                        html = html + '</a>';
-                      }else{
-                        html = html + lineTemp[i];
-                      }
-                      if(i<lineTemp.length-1){
-                        html = html + ' , ';
-                      }
-                    }
-                  html = html + ' ] ';
-                  html = html + '</div>';
-                });
-                html = html + '</div></div>';
-              }
-            });
-          }
-          html = html + '</div>';
-        });
-        if(html ==''){
-          document.getElementById('api').innerHTML ='<div class="noContent">-</div>';
-          return;
-        }
-        // console.log(html);
-        document.getElementById('api').innerHTML = html;
-      }
-      //  处理noParseMap
-      function doNoParse() {
-        var html = '';
-        if(report.parseErrorFiles.length >0){
+        if(report.parseErrorInfos.length >0){
           html = html + '<div class="second"><div class="owner">-</div><div class="area">';
-          report.parseErrorFiles.forEach((element, index) => {
+          report.parseErrorInfos.forEach((element, index) => {
             html = html + '<div class="gray-card';
-            html = html + '" onclick="parse_show(event)" data-f="';
+            html = html + '" onclick="api_show(event)" data-f="';
             html = html + index;
             html = html + '">';
             html = html + '<span style="color:#e9eb0c;">';
@@ -562,171 +415,11 @@
           html = html + '</div></div>';
         }
         if(html ==''){
-          document.getElementById('noParse').innerHTML ='<div class="noContent">-</div>';
+          document.getElementById('parseErrorInfos').innerHTML ='<div class="noContent">-</div>';
           return;
         }
-        document.getElementById('noParse').innerHTML = html;
+        document.getElementById('parseErrorInfos').innerHTML = html;
       }
-
-      //  处理typeMap
-      function doType() {
-        var html = '';
-        var data = report.typeMap;
-        Object.keys(data).forEach(element => {
-          html = html + '<div class="second"><div class="owner">';
-          html = html + element;
-          html = html + ' ( ';
-          html = html + data[element].callNum;
-          html = html + ' ) ';
-          html = html + '</div><div class="area">';
-          Object.keys(data[element].callOrigin).forEach(selement => {
-            html = html + '<div class="card">';
-            html = html + '<span style="color:#e9eb0c;">';
-            html = html + data[element].callOrigin[selement].projectName;
-            html = html + ' : ';
-            html = html + '</span>';
-            html = html + selement;
-            html = html + ' : [ ';
-              const lineTemp = data[element].callOrigin[selement].lines;
-              const httpRepo = data[element].callOrigin[selement].httpRepo || '';
-              for(let i=0; i<lineTemp.length; i++){
-                if(httpRepo){
-                  html = html + '<a href="';
-                  html = html + httpRepo;
-                  html = html + selement;
-                  html = html + '#L';
-                  html = html + lineTemp[i];
-                  html = html + '" target="_blank">';
-                  html = html + lineTemp[i];
-                  html = html + '</a>';
-                }else{
-                  html = html + lineTemp[i];
-                }
-                if(i<lineTemp.length-1){
-                  html = html + ' , ';
-                }
-              }
-            html = html + ' ] ';
-            html = html + '</div>';
-          });
-          html = html + '</div></div>';
-        });
-        if(html ==''){
-          document.getElementById('typeArea').innerHTML ='<div class="noContent">-</div>';
-          return;
-        }
-        document.getElementById('typeArea').innerHTML = html;
-      }
-
-      //  处理browserApiMap
-      function doBrowser() {
-        var html = '';
-        var data = report.browserApiMap;
-        Object.keys(data).forEach(element => {
-          html = html + '<div class="first">';
-          Object.keys(data[element]).forEach(selement => {
-            html = html + '<div class="second"><div class="owner">';
-            html = html + element;
-            html = html + '.';
-            html = html + selement;
-            html = html + ' ( ';
-            html = html + data[element][selement].callNum;
-            html = html + ' ) ';
-            html = html + '</div><div class="area">';
-            if (data[element][selement]) {
-              Object.keys(data[element][selement].callOrigin).forEach(telement => {
-                html = html + '<div class="card">';
-                html = html + '<span style="color:#e9eb0c;">';
-                html = html + data[element][selement].callOrigin[telement].projectName;
-                html = html + ' : ';
-                html = html + '</span>';
-                html = html + telement;
-                html = html + ' : [ ';
-                  const lineTemp = data[element][selement].callOrigin[telement].lines;
-                  const httpRepo = data[element][selement].callOrigin[telement].httpRepo || '';
-                  for(let i=0; i<lineTemp.length; i++){
-                    if(httpRepo){
-                      html = html + '<a href="';
-                      html = html + httpRepo;
-                      html = html + telement;
-                      html = html + '#L';
-                      html = html + lineTemp[i];
-                      html = html + '" target="_blank">';
-                      html = html + lineTemp[i];
-                      html = html + '</a>';
-                    }else{
-                      html = html + lineTemp[i];
-                    }
-                    if(i<lineTemp.length-1){
-                      html = html + ' , ';
-                    }
-                  }
-                html = html + ' ] ';
-                html = html + '</div>';
-              });
-            }
-            html = html + '</div></div>';
-          });
-          html = html + '</div>';
-        });
-        if(html ==''){
-          document.getElementById('browserApiMap').innerHTML ='<div class="noContent">-</div>';
-          return;
-        }
-        // console.log(html);
-        document.getElementById('browserApiMap').innerHTML = html;
-      }
-
-      //  处理noUseMap
-      function doNoUse() {
-        var html = '';
-        var data = report.noUseMap;
-        Object.keys(data).forEach(element => {
-          html = html + '<div class="second"><div class="owner">';
-          html = html + element;
-          html = html + ' ( ';
-          html = html + data[element].callNum;
-          html = html + ' ) ';
-          html = html + '</div><div class="area">';
-          data[element].callOrigin.forEach(selement => {
-            html = html + '<div class="card">';
-            html = html + '<span style="color:#e9eb0c;">';  
-            html = html + selement.projectName;
-            html = html + ' : ';
-            html = html + '</span>';
-            html = html + selement.path;
-            html = html + ' : [ ';
-              const lineTemp = selement.lines;
-              const httpRepo = selement.httpRepo || '';
-              for(let i=0; i<lineTemp.length; i++){
-                if(httpRepo){
-                  html = html + '<a href="';
-                  html = html + httpRepo;
-                  html = html + selement.path;
-                  html = html + '#L';
-                  html = html + lineTemp[i];
-                  html = html + '" target="_blank">';
-                  html = html + lineTemp[i];
-                  html = html + '</a>';
-                }else{
-                  html = html + lineTemp[i];
-                }
-                if(i<lineTemp.length-1){
-                  html = html + ' , ';
-                }
-              }
-            html = html + ' ] ';
-            html = html + '</div>';
-          });
-          html = html + '</div></div>';
-        });
-        if(html ==''){
-          document.getElementById('noUseMap').innerHTML ='<div class="noContent">-</div>';
-          return;
-        }
-        document.getElementById('noUseMap').innerHTML = html;
-      }
-
       // 展示分数及代码建议
       function doScore(){
         var data = report.scoreMap;
@@ -749,16 +442,77 @@
           document.getElementById('scoreMessage').innerHTML = html;
         }
       }
-
+      // 渲染API表格区域
+      function renderApiTable(data, type) {
+        var html = '';
+        Object.keys(data).forEach(element => {
+          html = html + '<div class="second"><div class="owner"';
+          if(data[element].isBlack){
+            html = html + ' style="color:red"';
+          }
+          html = html + ' >';
+          html = html + element;
+          html = html + ' ( ';
+          html = html + data[element].callNum;
+          html = html + ' ) ';
+          if(data[element].callOrigin){
+            html = html + '<span class="asStyle">';
+            html = html + '-> ';
+            html = html + data[element].callOrigin;
+            html = html + '</span>';
+          }
+          html = html + '</div><div class="area">';
+          Object.keys(data[element].callFiles).forEach(selement => {
+            html = html + '<div class="card">';
+            html = html + '<span style="color:#e9eb0c;">';
+            html = html + data[element].callFiles[selement].projectName;
+            html = html + ' : ';
+            html = html + '</span>';
+            html = html + selement;
+            html = html + ' : [ ';
+              const lineTemp = data[element].callFiles[selement].lines;
+              const httpRepo = data[element].callFiles[selement].httpRepo || '';
+              for(let i=0; i<lineTemp.length; i++){
+                if(httpRepo){
+                  html = html + '<a class="httpReopBtn" href="';
+                  html = html + httpRepo;
+                  html = html + selement;
+                  html = html + '#L';
+                  html = html + lineTemp[i];
+                  html = html + '" target="_blank">';
+                  html = html + lineTemp[i];
+                  html = html + '</a>';
+                }else{
+                  html = html + lineTemp[i];
+                }
+                if(i<lineTemp.length-1){
+                  html = html + ' , ';
+                }
+              }
+            html = html + ' ] ';
+            html = html + '</div>';
+          });
+          html = html + '</div></div>';
+        });
+        if(html ==''){
+          document.getElementById(type).innerHTML ='<div class="noContent">-</div>';
+          return;
+        }
+        document.getElementById(type).innerHTML = html;
+      }
+      // 入口函数
       function main() {
+        // render header
         document.title = report.reportTitle || '代码分析报告';
         document.getElementById('reportTitle').innerText = report.reportTitle || '代码分析报告';
         document.getElementById('reportTime').innerText = ' (' + report.analysisTime + ') ';
-        doApi();
-        doNoParse();
-        doType();
-        doBrowser();
-        doNoUse();
+        // render api
+        if(report.mapNames && report.mapNames.length>0){
+          report.mapNames.forEach((item)=>{
+            renderApiTable(report[item], item);
+          })
+        }
+        doParseError();
         if(report.scoreMap){
           doScore();
         }else{
