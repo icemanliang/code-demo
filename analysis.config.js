@@ -3,8 +3,11 @@ const { execSync } = require('child_process');                        // 子进�
 const DefaultBranch = 'main';                                         // 默认分支常量
 function getGitBranch() {                                             // 获取当然分支
     try{
-        const res = execSync('git branch');
-        return res.toString("utf8").replace('*','').trim();
+        const branchName = execSync('git symbolic-ref --short -q HEAD', {
+            encoding: 'utf8'
+        }).trim();
+        // console.log(branchName);
+        return branchName;
     }catch(e){
         return DefaultBranch;
     }
