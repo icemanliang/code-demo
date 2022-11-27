@@ -33,7 +33,7 @@ export default class IndexPage extends Vue {
 <style lang="scss" scoped>
 .bs {
   padding-top: $header-height;
-  &-shop-info {
+  &-s-info {
     margin-top: 20px;
     width: 100px;
   }

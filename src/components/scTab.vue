@@ -1,5 +1,5 @@
 <template>
-  <div ref="shopeeTab" class="sc-universal-tab">
+  <div ref="tab" class="sc-universal-tab">
     <br-tabs v-model="activeTab" @tab-click="tabClick" :class="{'br-tab-fixed': isFixed && isSticky}">
       <br-tab-pane v-for="tab in tabList" :key="tab.value" :name="`${tab.value}`">
         <div slot="label" class="approved-tab">
