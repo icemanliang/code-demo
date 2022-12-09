@@ -132,10 +132,10 @@ clone@^1.0.2:
   resolved "https://registry.npmjs.org/clone/-/clone-1.0.4.tgz#da309cc263df15994c688ca902179ca3c7cd7c7e"
   integrity sha512-JQHZ2QMW6l3aH/j6xCqQThY/9OH4D/9ls34cgkUBiEeocRTU04tHfKPBsUK1PqZCUQM7GiA0IIXJSuXHI64Kbg==
 
-code-analysis-ts@^1.3.7:
-  version "1.3.7"
-  resolved "https://registry.npmjs.org/code-analysis-ts/-/code-analysis-ts-1.3.7.tgz#4ac68fba869c8bfe82e8a06d06d69ae23d4720c8"
-  integrity sha512-b7BYIdpK9M7RK0Dz3vCqcv7zaEJq5Aa6KgofgUDYEL6Kj9D5ObWjqUGU+lmxUcj3cZmEZNpiX/M5fjMETK5Eqg==
+code-analysis-ts@^1.3.8:
+  version "1.3.8"
+  resolved "https://registry.npmjs.org/code-analysis-ts/-/code-analysis-ts-1.3.8.tgz#527630b55c9ec5d8664dd9085d61a05c9add31c4"
+  integrity sha512-gxkvJl8/9ZmvbanetMXCe8dra1hAjhr8aputtlfFGlqydTmgxQ7/Rkdf/zSk+Hs7MMtWklO8+MsDEFmWj0Df4A==
   dependencies:
     "@vue/compiler-dom" "3.0.2"
     chalk "^4.1.0"
