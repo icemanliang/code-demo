@@ -132,6 +132,11 @@ clone@^1.0.2:
   resolved "https://registry.npmjs.org/clone/-/clone-1.0.4.tgz#da309cc263df15994c688ca902179ca3c7cd7c7e"
   integrity sha512-JQHZ2QMW6l3aH/j6xCqQThY/9OH4D/9ls34cgkUBiEeocRTU04tHfKPBsUK1PqZCUQM7GiA0IIXJSuXHI64Kbg==
 
+code-analysis-plugins@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/code-analysis-plugins/-/code-analysis-plugins-1.0.1.tgz#08858b15543957698f27713c98eecc00ca4af5e0"
+  integrity sha512-k6t4on1icLMRIV4gmYshTXmZBvkuLwLSiWPMEI/utjZ54WzPmGv0tOGP/L398cHjZLz4xmZA//GCpS07OhF0Aw==
+
 code-analysis-ts@^1.3.8:
   version "1.3.8"
   resolved "https://registry.npmjs.org/code-analysis-ts/-/code-analysis-ts-1.3.8.tgz#527630b55c9ec5d8664dd9085d61a05c9add31c4"

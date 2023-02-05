@@ -1,5 +1,6 @@
 const analysis = require('code-analysis-ts');                         // 代码依赖分析工具
 const { classPlugin } = require('./classPlugin');                     // class API 分析插件
+// const { classPlugin } = require('code-analysis-plugins');          // class API 分析插件
 const { execSync } = require('child_process');                        // 子进程操作
 const DefaultBranch = 'main';                                         // 默认分支常量
 function getGitBranch() {                                             // 获取当然分支

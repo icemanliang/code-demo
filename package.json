@@ -17,6 +17,7 @@
     "npm": ">= 4.0.0"
   },
   "dependencies": {
+    "code-analysis-plugins": "^1.0.1",
     "pre-commit": "^1.2.2"
   }
 }
