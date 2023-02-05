@@ -1,5 +1,5 @@
-
-export default class Connect {
+import { Base } from 'framework';
+export default class Connect extends Base {
   private scope = 'email';
   private returnScopes = false;
   private xfbml = false;

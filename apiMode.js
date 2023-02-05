@@ -1,4 +1,5 @@
-const analysis = require('code-analysis-ts');
+const analysis = require('code-analysis-ts');                         // 代码依赖分析工具
+const { classPlugin } = require('./classPlugin');                     // class API 分析插件
 const { execSync } = require('child_process');                        // 子进程操作
 const DefaultBranch = 'main';                                         // 默认分支常量
 function getGitBranch() {                                             // 获取当然分支
@@ -24,7 +25,7 @@ async function scan() {
                 httpRepo: `https://github.com/liangxin199045/code-demo/blob/${getGitBranch()}/`   // 可选，项目gitlab/github url的访问前缀，用于点击行信息跳转，不填则不跳转
             }],                                                                 
             analysisTarget: 'framework',                                            // 必须，要分析的目标依赖名
-            analysisPlugins: [],                                                    // 可选，自定义分析插件，默认为空数组，一般不需要配置
+            analysisPlugins: [classPlugin],                                         // 可选，自定义分析插件，默认为空数组，一般不需要配置
             blackList: ['app.localStorage.set', 'location.href'],                   // 可选，需要标记的黑名单api，默认为空数组
             browserApis: ['window','document','history','location'],                // 可选，要分析的BrowserApi，默认为空数组
             reportDir: 'docs',                                                      // 可选，生成代码分析报告的目录，默认为'report',不支持多级目录配置

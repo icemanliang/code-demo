@@ -17,6 +17,8 @@ interface Option {
   value:string;
 }
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
+import { ActivePage } from 'framework';
+
 @Component({
   components: {}
 })
@@ -37,10 +39,11 @@ export default class InventoryIndex extends Vue {// READ ME
   }
 
   tabClick(value:any) {
+    const page = new ActivePage();
     const tab = this.value;
     this.$emit('tabClick', value);
     if(tab !== value) {
-      this.$emit('change', value);
+      return page;
     }
   }
 }
