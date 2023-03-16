@@ -24,6 +24,9 @@ $ yarn analysis
 评分插件:
 scorePlugin.js为评分插件demo，analysis.config.js可以将scorePlugin配置项修改为该插件，即可体验自定义评分。
 
+分析插件：
+classPlugin.js为检测 Class API调用的自定义分析插件，apiMode.js可以引入它可以在分析结果中新增 Class API 用途调用的分析指标。
+
 代码分析报告地址：
 https://liangxin199045.github.io/code-demo/
 

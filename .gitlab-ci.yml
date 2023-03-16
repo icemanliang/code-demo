@@ -1,34 +1,49 @@
+# 任务指定镜像
 image: node:14
 
-
+# 流水线有2个阶段，先执行analysis阶段的任务，然后执行depoly阶段的任务
 stages:
   - analysis
-  - depoly
+  - deploy
 
+# 在每个任务开始之前需要执行的命令
 before_script:
   - npm install
 
 # 执行代码分析
-work:
-  stage: analysis
+work:                            # job name
+  stage: analysis                # 归属于analysis阶段
   only:
-    - master
+    - master                     # master分支发生变化时触发Pipeline
   script:
-    - npm run analysis
-  artifacts:
-    paths:
-      - docs
+    - npm run analysis           # 任务执行脚本
+  artifacts:                     
+    paths:                       # 缓存文件夹，可以在CI流水线任务 UI 界面中下载
+      - docs                     # 代码分析报告生成目录，与analysis.config.js配置保持一致
 
-# 部署gitlab pages
-pages:
-  stage: depoly
+# 部署pages
+pages:                           # job name
+  stage: deploy                  # 归属于deploy阶段
   only:
-    - master
+    - master                     # master分支发生变化时触发Pipeline
+  when: on_success               # 前一阶段所有任务成功时才执行
   script:
-    - mkdir -p public
-    - mv docs/* public
-  dependencies:
-    - work
-  artifacts:
+    - mkdir -p public            # 执行脚本创建public目录
+    - mv docs/* public           # 执行脚本将docs目录下的代码分析报告相关静态文件复制到public目录
+    - bash ./notification.sh     # 推送代码分析报告消息
+  dependencies:                 
+    - work                       # 依赖work job
+  artifacts:            
     paths:
-      - public
+      - public                   # 声明Gitlab Pages静态资源目录
+
+# 代码告警
+alert:
+  stage: deploy                  # 归属于deploy阶段
+  only:
+    - master                     # master分支发生变化时触发Pipeline
+  when: on_fail                  # 前一阶段所有任务成功时才执行
+  script:
+    - bash ./alert.sh            # 推送代码分析报告消息
+  dependencies:                 
+    - work                       # 依赖work job
