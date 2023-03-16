@@ -1,7 +1,7 @@
 const { execSync } = require('child_process');                        // 子进程操作
 // const { myScoreDeal } = require('./scorePlugin.js');               // 自定义评分插件
 const DefaultBranch = 'main';                                         // 默认分支常量
-function getGitBranch() {                                             // 获取当然分支
+function getGitBranch() {                                             // 获取当前分支
     try{
         const branchName = execSync('git symbolic-ref --short -q HEAD', {
             encoding: 'utf8'
