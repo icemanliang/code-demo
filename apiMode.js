@@ -1,4 +1,4 @@
-const analysis = require('code-analysis-ts');                         // 代码依赖分析工具
+const analysis = require('code-analysis-ts-multi-progress');          // 代码依赖分析工具
 const { classPlugin } = require('./classPlugin');                     // class API 分析插件
 // const { classPlugin } = require('code-analysis-plugins');          // class API 分析插件
 const { execSync } = require('child_process');                        // 子进程操作

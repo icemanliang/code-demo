@@ -1,5 +1,5 @@
 # code-demo
-用于测试&演示code-analysis-ts代码扫描分析工具的demo项目,使用github pages来部署报告
+用于测试&演示code-analysis-ts-multi-progress代码扫描分析工具的demo项目,使用github pages来部署报告
 
 目录介绍：
 1. analysis.config.js为配置文件
@@ -28,7 +28,7 @@ scorePlugin.js为评分插件demo，analysis.config.js可以将scorePlugin配置
 classPlugin.js为检测 Class API调用的自定义分析插件，apiMode.js可以引入它可以在分析结果中新增 Class API 用途调用的分析指标。
 
 代码分析报告地址：
-https://liangxin199045.github.io/code-demo/
+https://liangxin199045.github.io/code-demo/ (multi-progress-feature分支)
 
 常见问题:
 1. vue_temp_ts_dir目录是什么
