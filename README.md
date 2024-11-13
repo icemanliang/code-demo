@@ -28,7 +28,7 @@ scorePlugin.js为评分插件demo，analysis.config.js可以将scorePlugin配置
 classPlugin.js为检测 Class API调用的自定义分析插件，apiMode.js可以引入它可以在分析结果中新增 Class API 用途调用的分析指标。
 
 代码分析报告地址：
-https://liangxin199045.github.io/code-demo/
+https://icemanliang.github.io/code-demo/
 
 常见问题:
 1. vue_temp_ts_dir目录是什么
